@@ -59,4 +59,5 @@ taller_integracion_examen/
    └─ static/
       └─ catalogo/
          └─ styles.css
+         
 
