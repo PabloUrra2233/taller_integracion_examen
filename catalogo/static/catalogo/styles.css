@@ -104,3 +104,7 @@ body {
     font-weight: 600;
     font-size: 0.95rem;
 }
+
+.detalle-imagen {
+    margin-top: 160px; /* ajusta el valor a tu gusto: 20, 40, etc. */
+}
