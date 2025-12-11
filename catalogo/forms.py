@@ -35,8 +35,9 @@ class BusquedaProductoForm(forms.Form):
 class ProductoForm(forms.ModelForm):
     class Meta:
         model = Producto
-        fields = ['categoria', 'precio', 'stock', 'descripcion', 'imagen']
+        fields = ['nombre', 'categoria', 'precio', 'stock', 'descripcion', 'imagen']
         widgets = {
+            'nombre': forms.TextInput(attrs={'class': 'form-control'}),
             'categoria': forms.Select(attrs={'class': 'form-select'}),
             'precio': forms.NumberInput(attrs={'class': 'form-control'}),
             'stock': forms.NumberInput(attrs={'class': 'form-control'}),
