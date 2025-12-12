@@ -17,7 +17,7 @@ class Producto(models.Model):
     imagen = models.URLField(blank=True)
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     descripcion = models.TextField()  # permite descripciones largas
-
+    stock = models.PositiveIntegerField(default=0) 
     class Meta:
         ordering = ['nombre']
 

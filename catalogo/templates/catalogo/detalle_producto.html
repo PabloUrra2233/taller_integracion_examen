@@ -1,0 +1,65 @@
+{% extends 'catalogo/base.html' %}
+{% load humanize %}
+
+{% block title %}{{ producto.nombre }} - Librería{% endblock %}
+
+{% block content %}
+<div class="container mt-4 detalle-contenedor">
+  <div class="row g-4 align-items-start">
+
+    <!-- COLUMNA IZQUIERDA: imagen + texto -->
+    <div class="col-lg-7">
+      <!-- Imagen -->
+      <div class="card mb-3 detalle-imagen">
+        {% if producto.imagen %}
+          <img src="{{ producto.imagen }}" alt="{{ producto.nombre }}">
+        {% endif %}
+      </div>
+      <!-- Texto debajo de la imagen -->
+      <div class="detalle-texto">
+        <h1 class="h3 mb-1">{{ producto.nombre }}</h1>
+        <p class="text-muted mb-3">{{ producto.categoria.nombre }}</p>
+
+        <p class="mb-4">
+          {{ producto.descripcion }}
+        </p>
+
+        <p class="h4 mb-3">
+          Precio actual: ${{ producto.precio|floatformat:0|intcomma }}
+        </p>
+        <p class="mb-4">
+          Stock disponible: {{ producto.stock }}
+        </p>
+      </div>
+    </div>
+
+    <!-- COLUMNA DERECHA: tarjeta con formulario de edición -->
+    <div class="col-lg-5">
+      <div class="card p-3 detalle-form">
+        <h2 class="h5 mb-3">Editar atributos</h2>
+
+        <!-- Formulario de edición -->
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+
+          <button type="submit" class="btn btn-primary">Guardar cambios</button>
+          <a href="{% url 'lista_productos' %}" class="btn btn-outline-secondary ms-2">
+            Volver al catálogo
+          </a>
+        </form>
+
+        <!-- Formulario separado para eliminar -->
+        <form method="post" action="{% url 'eliminar_producto' producto.id %}" class="mt-3">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger"
+                  onclick="return confirm('¿Seguro que quieres eliminar este producto?');">
+            Eliminar producto
+          </button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

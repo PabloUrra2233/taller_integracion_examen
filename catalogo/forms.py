@@ -1,5 +1,6 @@
 from django import forms
-from .models import Categoria
+from .models import Categoria, Producto
+
 
 
 class BusquedaProductoForm(forms.Form):
@@ -30,3 +31,16 @@ class BusquedaProductoForm(forms.Form):
         super().__init__(*args, **kwargs)
         # Cargamos las categorías reales cuando el form se crea
         self.fields['categoria'].queryset = Categoria.objects.all()
+
+class ProductoForm(forms.ModelForm):
+    class Meta:
+        model = Producto
+        fields = ['nombre', 'categoria', 'precio', 'stock', 'descripcion', 'imagen']
+        widgets = {
+            'nombre': forms.TextInput(attrs={'class': 'form-control'}),
+            'categoria': forms.Select(attrs={'class': 'form-select'}),
+            'precio': forms.NumberInput(attrs={'class': 'form-control'}),
+            'stock': forms.NumberInput(attrs={'class': 'form-control'}),
+            'descripcion': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
+            'imagen': forms.URLInput(attrs={'class': 'form-control'}),
+        }
