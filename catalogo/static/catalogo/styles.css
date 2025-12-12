@@ -54,13 +54,6 @@ body {
     
 }
 
-/* Precio en el footer de la tarjeta */
-.card-footer {
-    background-color: #ffffff;
-    font-weight: 600;
-    font-size: 1rem;
-}
-
 .empty-message {
     text-align: center;
     margin-top: 40px;
@@ -83,7 +76,7 @@ body {
     align-items: center;
     justify-content: center;
     background-color: #ffffff;
-    padding: 8px;
+    padding: 10px;
 }
 
 
@@ -105,6 +98,19 @@ body {
     font-size: 0.95rem;
 }
 
+/* Tarjeta de la imagen en el detalle */
 .detalle-imagen {
-    margin-top: 160px; /* ajusta el valor a tu gusto: 20, 40, etc. */
+    border-radius: 12px;
+    overflow: hidden;
+    padding: 0;
+
+    max-width: 600px;      
+    margin: 0 auto 1.5rem; 
+}
+
+/* La imagen llena ESA tarjeta, sin deformarse */
+.detalle-imagen img {
+    display: block;
+    width: 100%;
+    height: auto;
 }
